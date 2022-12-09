@@ -1,0 +1,38 @@
+@import "../../Utils/styleUtils";
+
+.header-container {
+  background-color: $bg-secondary-color;
+  padding: 0.8em 0;
+
+  ul {
+    margin-inline: 3em;
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 1em;
+  }
+
+  .option {
+    color: $primary-color;
+    font-size: small;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .title {
+    margin-inline-end: auto;
+    font-size: larger;
+  }
+
+  .logout {
+    border: 1px solid $primary-color;
+    padding: 0.5em 1.5em;
+    border-radius: 5px;
+  }
+}
+
+@include tablet {
+  .header-container ul {
+    margin-inline: 15em;
+  }
+}

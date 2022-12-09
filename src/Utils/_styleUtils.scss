@@ -1,0 +1,15 @@
+//colors
+$primary-color: #fff;
+$bg-secondary-color: #38015c;
+$buttons-color: #9f5ccc;
+$text-color: #9f5bcb;
+$input-bg-color: #f1e1fc;
+$input-border: #4f1f6f;
+$input-label-color: #353336;
+
+//responsive design
+@mixin tablet {
+  @media (min-width: 970px) {
+    @content;
+  }
+}

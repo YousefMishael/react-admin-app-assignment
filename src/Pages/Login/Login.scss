@@ -1,0 +1,64 @@
+@import "../../Utils/styleUtils";
+
+.login-container {
+  color: $primary-color;
+}
+
+.login-form {
+  text-align: center;
+  background-color: $bg-secondary-color;
+  width: 25rem;
+  padding: 1em 0.5em;
+  border-radius: 5px;
+  margin: 2em auto 0 auto;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+
+  .title {
+    margin: 1em 0;
+    font-size: larger;
+  }
+
+  label {
+    font-size: small;
+  }
+
+  .form-input {
+    width: 100%;
+    margin-top: 0.4em;
+    outline: none;
+    border: none;
+    padding: 0.4em 0.2em;
+    border-radius: 5px;
+    background-color: $input-bg-color;
+  }
+
+  > div {
+    margin-top: 0.5em;
+  }
+
+  .login-btn {
+    background-color: $buttons-color;
+    border: none;
+    outline: none;
+    padding: 0.5em 2.4em;
+    border-radius: 5px;
+    color: $primary-color;
+    margin-top: 1em;
+    cursor: pointer;
+  }
+
+  .signup-text {
+    color: $text-color;
+    margin-top: 1em;
+    font-size: small;
+    cursor: pointer;
+  }
+}
+
+@include tablet {
+  .login-form {
+    width: 30rem;
+    padding: 1em;
+  }
+}
