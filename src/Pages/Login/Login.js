@@ -45,29 +45,29 @@ function Login() {
   async function onSubmit(e) {
     e.preventDefault();
 
-    if (formState.mode === "signin") {
+    if (!formState.email || !formState.password) return;
+    let url;
+    if (formState.mode === "signin")
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=API_KEY";
+    //signup
+    else
+      url =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=API_KEY";
+
+    const resp = await request(url, "POST", {
+      email: formState.email,
+      password: formState.password,
+      returnSecureToken: true,
+    });
+
+    if (resp.status === 200) {
+      context.setToken(resp.data.idToken);
+      localStorage.setItem("token", JSON.stringify(resp.data.idToken));
     } else {
-      //signup
-      if (!formState.email || !formState.password) return;
-
-      const resp = await request(
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=API_KEY",
-        "POST",
-        {
-          email: formState.email,
-          password: formState.password,
-          returnSecureToken: true,
-        }
+      alert(
+        "An error occured while creating your account. Please make sure that your password is at least 6 characters"
       );
-
-      if (resp.status === 200) {
-        context.setToken(resp.data.idToken);
-        localStorage.setItem("token", JSON.stringify(resp.data.idToken));
-      } else {
-        alert(
-          "An error occured while creating your account. Please make sure that your password is at least 6 characters"
-        );
-      }
     }
   }
 

@@ -1,8 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Header.scss";
+import { useGlobalContext } from "../../Utils/Utils";
+import { Link } from "react-router-dom";
 
 function Header(props) {
+  const context = useGlobalContext();
+
+  function logout() {
+    context.setToken("");
+    localStorage.removeItem("token");
+  }
+
   return (
     <div className="header-container">
       <ul>
@@ -18,7 +26,9 @@ function Header(props) {
             <li className="option">
               <Link to={"/profile"}>Profile</Link>
             </li>
-            <li className="option logout">Logout</li>
+            <li className="option logout" onClick={logout}>
+              Logout
+            </li>
           </>
         )}
       </ul>
