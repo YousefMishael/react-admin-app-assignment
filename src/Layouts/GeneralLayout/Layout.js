@@ -4,13 +4,16 @@ import Header from "../../Components/Header/Header";
 import { GlobalContext } from "../../Utils/Utils";
 
 function Layout() {
-  const [globalState, setGlobalState] = useState({
-    token: "",
-  });
+  const [token, setToken] = useState(JSON.parse(localStorage.getItem("token")));
 
   return (
-    <GlobalContext.Provider value={globalState}>
-      <Header isAuth={globalState.token} />
+    <GlobalContext.Provider
+      value={{
+        token,
+        setToken,
+      }}
+    >
+      <Header isAuth={token} />
       <Outlet />
     </GlobalContext.Provider>
   );

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Login.scss";
+import { request } from "../../Utils/APIUtils";
+import { useGlobalContext } from "../../Utils/Utils";
 
 function Login() {
   const [formState, setFormState] = useState({
@@ -10,6 +12,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const context = useGlobalContext();
 
   function toggleForm() {
     if (formState.mode === "signin")
@@ -39,9 +42,38 @@ function Login() {
     });
   }
 
+  async function onSubmit(e) {
+    e.preventDefault();
+
+    if (formState.mode === "signin") {
+    } else {
+      //signup
+      if (!formState.email || !formState.password) return;
+
+      const resp = await request(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=API_KEY",
+        "POST",
+        {
+          email: formState.email,
+          password: formState.password,
+          returnSecureToken: true,
+        }
+      );
+
+      if (resp.status === 200) {
+        context.setToken(resp.data.idToken);
+        localStorage.setItem("token", JSON.stringify(resp.data.idToken));
+      } else {
+        alert(
+          "An error occured while creating your account. Please make sure that your password is at least 6 characters"
+        );
+      }
+    }
+  }
+
   return (
     <div className="login-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={onSubmit}>
         <div className="title">{formState.title}</div>
         <div>
           <div>

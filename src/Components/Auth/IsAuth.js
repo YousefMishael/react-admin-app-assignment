@@ -6,9 +6,7 @@ function IsAuth(props) {
   const context = useGlobalContext();
 
   return (
-    <div>
-      {context.token === "" ? <Navigate to={"/login"} /> : props.children}
-    </div>
+    <div>{!context.token ? <Navigate to={"/login"} /> : props.children}</div>
   );
 }
 
