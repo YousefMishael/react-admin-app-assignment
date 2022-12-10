@@ -31,15 +31,10 @@ export function request(
     ..._options,
   }).then(async (resp) => {
     const status = resp.status;
-    if (status === 200)
-      return {
-        data: await resp.json(),
-        status,
-      };
-    else
-      return {
-        data: [],
-        status,
-      };
+
+    return {
+      data: await resp.json(),
+      status,
+    };
   });
 }

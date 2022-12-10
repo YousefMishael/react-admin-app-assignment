@@ -65,9 +65,7 @@ function Login() {
       context.setToken(resp.data.idToken);
       localStorage.setItem("token", JSON.stringify(resp.data.idToken));
     } else {
-      alert(
-        "An error occured while creating your account. Please make sure that your password is at least 6 characters"
-      );
+      alert(resp.data?.error?.message || "An Error occured");
     }
   }
 
