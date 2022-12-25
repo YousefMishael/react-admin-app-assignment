@@ -4,7 +4,9 @@ import Header from "../../Components/Header/Header";
 import { GlobalContext } from "../../Utils/Utils";
 
 function Layout() {
-  const [token, setToken] = useState(JSON.parse(localStorage.getItem("token")));
+  const [token, setToken] = useState(
+    JSON.parse(JSON.stringify(localStorage.getItem("token")))
+  );
 
   return (
     <GlobalContext.Provider
